@@ -303,7 +303,9 @@ footer{margin-top:52px;padding-top:14px;border-top:1px solid var(--line);
   [["Ejecutor", D.patron.ejecutor],
    ["Equipo patrón", D.patron.marca+" "+String(D.patron.modelo).split("(")[0].trim()+"  ·  N/S "+D.patron.serie],
    ["Certificado", D.patron.cert],
-   ["Periodo", D.periodo ? flarga(D.periodo[0])+" al "+flarga(D.periodo[1]) : "—"]
+   ["Periodo", !D.periodo ? "—" : (D.periodo[0].slice(0,7)===D.periodo[1].slice(0,7)
+      ? String(+D.periodo[0].slice(8,10))+" al "+flarga(D.periodo[1])
+      : flarga(D.periodo[0])+" al "+flarga(D.periodo[1]))]
   ].forEach(function(p){
     var d=el("div"); d.appendChild(el("span","", p[0]+": ")); d.appendChild(el("b","",p[1]));
     $("#meta").appendChild(d);
